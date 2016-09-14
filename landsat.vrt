@@ -1,0 +1,83 @@
+<VRTDataset rasterXSize="3671" rasterYSize="3671">
+  <SRS>PROJCS["UTM Zone 31, Northern Hemisphere",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",3],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AUTHORITY["EPSG","32631"]]</SRS>
+  <GeoTransform>  3.0015019161584723e+05,  2.9982920084303917e+01,  0.0000000000000000e+00,  4.8707528290257305e+06,  0.0000000000000000e+00, -2.9982920084303917e+01</GeoTransform>
+  <VRTRasterBand dataType="Int16" band="1" subClass="VRTDerivedRasterBand">
+
+    <PixelFunctionType>time_average</PixelFunctionType>
+    <PixelFunctionLanguage>Python</PixelFunctionLanguage>
+
+    <PixelFunctionCode><![CDATA[
+import numpy as np
+
+def time_average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize, raster_ysize, buf_radius, gt, **kwargs):
+    # Average along the first dimension, i.e. across time
+    out_ar[:] = np.average(in_ar, axis = 0)
+    ]]>
+    </PixelFunctionCode>
+
+
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20140309.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20140401.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20140417.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20140528.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20140620.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20140731.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20140901.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20141003.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+    <SimpleSource>
+      <SourceFilename relativeToVRT="1">Data/LANDSAT_MultiTempIm_clip_GapF_20141026.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="3671" RasterYSize="3671" DataType="Int16" BlockXSize="3671" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+      <DstRect xOff="0" yOff="0" xSize="3671" ySize="3671" />
+    </SimpleSource>
+  </VRTRasterBand>
+</VRTDataset>
