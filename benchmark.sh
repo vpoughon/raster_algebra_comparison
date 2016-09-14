@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -euo pipefail
+set -euo pipefail
 
 # GDAL VRT derived band with python defined pixel function
 time gdal_translate landsat.vrt landsat_average_gdal_vrt.tif
