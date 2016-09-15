@@ -1,7 +1,9 @@
 #include "otbWrapperApplication.h"
 #include "otbWrapperApplicationFactory.h"
 
+#include "otbMultiToMonoChannelExtractROI.h"
 #include "itkNaryAddImageFilter.h"
+#include "itkMultiplyImageFilter.h"
 
 namespace otb
 {
@@ -19,11 +21,15 @@ public:
   itkTypeMacro(TimeAverage, otb::Application);
 
   // Image and pixel types
-  typedef otb::VectorImage<int16_t, 2>       ImageType;
+  typedef otb::Image<float, 2>               ImageType;
   typedef ImageType::InternalPixelType       ImagePixelType;
+  typedef FloatVectorImageType               VectorImageType;
+  typedef VectorImageType::InternalPixelType VectorImagePixelType;
 
   // Filters and iterators
-  typedef itk::NaryAddImageFilter<ImageType, ImageType> NaryAddImageFilterType;
+  typedef otb::MultiToMonoChannelExtractROI<VectorImagePixelType, ImagePixelType>  ExtractChannelType;
+  typedef itk::NaryAddImageFilter<ImageType, ImageType>                            NaryAddImageFilterType;
+  typedef itk::MultiplyImageFilter<ImageType, ImageType, ImageType>                MultiplyImageFilterType;
 
 private:
   void DoInit()
@@ -53,8 +59,32 @@ private:
 
   void DoExecute()
   {
-  }
+    FloatVectorImageListType::Pointer inList = GetParameterImageList("il");
 
+    std::vector<ExtractChannelType::Pointer> extractChannelFilters(inList->Size(), NULL);
+    NaryAddImageFilterType::Pointer naryAdder = NaryAddImageFilterType::New();
+
+    // For each input image
+    for (unsigned int i = 0; i < inList->Size(); i++)
+    {
+      extractChannelFilters[i] = ExtractChannelType::New();
+      extractChannelFilters[i]->SetInput(inList->GetNthElement(i));
+
+      // Extract first band
+      extractChannelFilters[i]->SetChannel(1);
+
+      // Add it
+      naryAdder->SetInput(0, extractChannelFilters[i]->GetOutput());
+    }
+
+    // Divide by N
+    MultiplyImageFilterType::Pointer divideFilter = MultiplyImageFilterType::New();
+    divideFilter->SetInput(naryAdder->GetOutput());
+    divideFilter->SetConstant(1.0f/inList->Size());
+
+    // Write
+    SetParameterOutputImage("out", divideFilter->GetOutput());
+  }
 };
 } // namespace Wrapper
 } //namespace otb
