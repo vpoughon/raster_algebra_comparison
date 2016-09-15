@@ -74,7 +74,7 @@ private:
       extractChannelFilters[i]->SetChannel(1);
 
       // Add it
-      naryAdder->SetInput(0, extractChannelFilters[i]->GetOutput());
+      naryAdder->SetInput(i, extractChannelFilters[i]->GetOutput());
     }
 
     // Divide by N

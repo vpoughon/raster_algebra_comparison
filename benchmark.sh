@@ -46,3 +46,17 @@ Data/LANDSAT_MultiTempIm_clip_GapF_20141003.tif \
 Data/LANDSAT_MultiTempIm_clip_GapF_20141026.tif \
 -out landsat_average_otb_BandMathX.tif int16 \
 -exp "(im1b1 + im2b1 + im3b1 + im4b1 + im5b1 + im6b1 + im7b1 + im8b1 + im9b1)/9.0"
+
+# OTB C++ (based on itk::NaryAddImageFilter)
+time \
+otbApplicationLauncherCommandLine TimeAverage build/ -il \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140309.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140401.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140417.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140528.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140620.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140731.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140901.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20141003.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20141026.tif \
+-out landsat_average_otb_cpp.tif int16
