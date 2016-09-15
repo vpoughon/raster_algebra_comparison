@@ -45,7 +45,7 @@ private:
     AddDocTag("");
 
     AddParameter(ParameterType_InputImageList, "il", "Input images");
-    AddParameter(ParameterType_OutputFilename, "out", "Output Image");
+    AddParameter(ParameterType_OutputImage, "out", "Output Image");
 
     // System parameters
     AddParameter(ParameterType_RAM, "ram", "Available RAM");
