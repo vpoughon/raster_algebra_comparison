@@ -19,3 +19,6 @@ otb_create_application(
   NAME FunctorTimeAverage
   SOURCES appFunctorTimeAverage.cxx
   LINK_LIBRARIES ${${otb-module}_LIBRARIES})
+
+add_executable(exeFunctorTimeAverage exeFunctorTimeAverage.cxx)
+target_link_libraries(exeFunctorTimeAverage ${OTB_LIBRARIES})
