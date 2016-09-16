@@ -14,3 +14,8 @@ otb_create_application(
   NAME TimeAverage
   SOURCES appTimeAverage.cxx
   LINK_LIBRARIES ${${otb-module}_LIBRARIES})
+
+otb_create_application(
+  NAME FunctorTimeAverage
+  SOURCES appFunctorTimeAverage.cxx
+  LINK_LIBRARIES ${${otb-module}_LIBRARIES})
