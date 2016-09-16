@@ -31,7 +31,6 @@ public:
   typedef itk::NaryAddImageFilter<ImageType, ImageType>                            NaryAddImageFilterType;
   typedef itk::MultiplyImageFilter<ImageType, ImageType, ImageType>                MultiplyImageFilterType;
 
-private:
   void DoInit()
   {
     SetName("TimeAverage");
@@ -61,16 +60,15 @@ private:
   {
     FloatVectorImageListType::Pointer inList = GetParameterImageList("il");
 
-    std::vector<ExtractChannelType::Pointer> extractChannelFilters(inList->Size(), NULL);
-    NaryAddImageFilterType::Pointer naryAdder = NaryAddImageFilterType::New();
+    extractChannelFilters.resize(inList->Size(), NULL);
+    naryAdder = NaryAddImageFilterType::New();
 
     // For each input image
     for (unsigned int i = 0; i < inList->Size(); i++)
     {
+      // Extract first band
       extractChannelFilters[i] = ExtractChannelType::New();
       extractChannelFilters[i]->SetInput(inList->GetNthElement(i));
-
-      // Extract first band
       extractChannelFilters[i]->SetChannel(1);
 
       // Add it
@@ -78,13 +76,18 @@ private:
     }
 
     // Divide by N
-    MultiplyImageFilterType::Pointer divideFilter = MultiplyImageFilterType::New();
+    divideFilter = MultiplyImageFilterType::New();
     divideFilter->SetInput(naryAdder->GetOutput());
     divideFilter->SetConstant(1.0f/inList->Size());
 
     // Write
     SetParameterOutputImage("out", divideFilter->GetOutput());
   }
+
+  // Filters
+  std::vector<ExtractChannelType::Pointer> extractChannelFilters;
+  NaryAddImageFilterType::Pointer naryAdder;
+  MultiplyImageFilterType::Pointer divideFilter;
 };
 } // namespace Wrapper
 } //namespace otb
