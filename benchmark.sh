@@ -95,3 +95,18 @@ Data/LANDSAT_MultiTempIm_clip_GapF_20140901.tif \
 Data/LANDSAT_MultiTempIm_clip_GapF_20141003.tif \
 Data/LANDSAT_MultiTempIm_clip_GapF_20141026.tif \
 landsat_average_otb_cpp_noapp.tif
+
+echo ""
+echo "OTB C++ (no application, no streaming)"
+time \
+./build/exeFunctorTimeAverage \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140309.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140401.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140417.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140528.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140620.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140731.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20140901.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20141003.tif \
+Data/LANDSAT_MultiTempIm_clip_GapF_20141026.tif \
+"landsat_average_otb_cpp_noapp_nostreaming.tif?&streaming:type=none"
